@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
+import impetus_bubble from "../../assets/logos/impetus_bubble.png";
+import concepts_bubble from "../../assets/logos/concepts_bubble.png";
+import pradnya_bubble from "../../assets/logos/pradnya_bubble.png";
+
 const COUNTDOWN_TO = "2026-03-20T23:59:00+05:30";
+
+const images = [impetus_bubble, concepts_bubble, pradnya_bubble];
 
 const RadarCountdown = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -10,6 +16,9 @@ const RadarCountdown = () => {
     seconds: "00",
   });
 
+  const [activeImg, setActiveImg] = useState(0);
+
+  // ⏳ Countdown Logic
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -32,58 +41,104 @@ const RadarCountdown = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // 🔁 Image loop every 4 seconds
+  useEffect(() => {
+    const cycle = setInterval(() => {
+      setActiveImg((prev) => (prev + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(cycle);
+  }, []);
+
   return (
-    <div className="relative w-60 h-60 rounded-xl border border-cyan-300/40 bg-black/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(0,255,255,0.20)]">
+    <div className="relative w-56 h-56 mx-auto mt-6">
 
-      {/* Corner brackets */}
-      <span className="absolute w-6 h-6 border-l-2 border-t-2 border-cyan-300/70 top-0 left-0" />
-      <span className="absolute w-6 h-6 border-r-2 border-t-2 border-cyan-300/70 top-0 right-0" />
-      <span className="absolute w-6 h-6 border-l-2 border-b-2 border-cyan-300/70 bottom-0 left-0" />
-      <span className="absolute w-6 h-6 border-r-2 border-b-2 border-cyan-300/70 bottom-0 right-0" />
+      {/* CIRCULAR RADAR */}
+      <div className="relative w-full h-full rounded-full overflow-hidden backdrop-blur-xl shadow-[0_0_45px_rgba(0,200,255,0.25)]">
 
-      {/* Radar rings */}
-      <div className="absolute inset-0 rounded-full border border-cyan-300/55" />
-      <div className="absolute inset-[18%] rounded-full border border-cyan-300/35" />
-      <div className="absolute inset-[36%] rounded-full border border-cyan-300/25" />
+        {/* ===========================
+            CYCLING BACKGROUND IMAGE
+        ============================ */}
+        {images.map((img, i) => (
+  <img
+    key={i}
+    src={img}
+    alt=""
+    className={`
+      absolute top-0 left-0 w-full h-full 
+      object-cover       
+      object-center
+      transition-opacity duration-[1000ms] ease-out
+      rounded-full       
+      ${activeImg === i ? "opacity-50" : "opacity-0"}
+    `}
+  />
+))}
 
-      {/* Crosshair */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-x-0 top-1/2 h-[1px] bg-cyan-300/40" />
-        <div className="absolute inset-y-0 left-1/2 w-[1px] bg-cyan-300/40" />
-      </div>
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/55"></div>
 
-      {/* Sweep */}
-      <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_270deg,rgba(20,241,255,0.9),transparent_55%)] blur-sm mix-blend-screen animate-radarSpin" />
+        {/* Radar Rings */}
+        <div className="absolute inset-4 rounded-full border border-cyan-300/45" />
+        <div className="absolute inset-10 rounded-full border border-cyan-300/25" />
+        <div className="absolute inset-[70px] rounded-full border border-cyan-300/20" />
 
-      {/* Time text + labels */}
-      <div className="relative text-center z-10 space-y-1">
-        <p className="text-[11px] tracking-[0.18em] text-cyan-100/80 uppercase">
-          Countdown
-        </p>
-
-        <div className="flex justify-center gap-1 text-[22px] font-extrabold leading-none text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
-          <span>{timeLeft.days}</span>:
-          <span>{timeLeft.hours}</span>:
-          <span>{timeLeft.minutes}</span>:
-          <span>{timeLeft.seconds}</span>
+        {/* Crosshair */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-x-0 top-1/2 h-[1px] bg-cyan-300/25" />
+          <div className="absolute inset-y-0 left-1/2 w-[1px] bg-cyan-300/25" />
         </div>
 
-        {/* LABELS */}
-        <div className="flex justify-center gap-5 text-[9px] tracking-[0.18em] text-white-200/70 uppercase mt-2">
-          <span>Days</span>
-          <span>Hrs</span>
-          <span>Min</span>
-          <span>Sec</span>
+        {/* Radar Sweep */}
+        <div
+          className="
+            absolute inset-0 rounded-full
+            bg-[conic-gradient(
+              from_260deg,
+              rgba(0,255,255,0.75),
+              rgba(0,200,255,0.55) 15%,
+              rgba(0,150,255,0.35) 30%,
+              rgba(255,140,50,0.4) 45%,
+              transparent 70%
+            )]
+            animate-radarSpin
+            mix-blend-screen blur-sm
+          "
+        />
+
+        {/* Time Display */}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
+          <p className="text-[12px] tracking-[0.28em] text-cyan-200/90 uppercase mb-1">
+            Countdown
+          </p>
+
+          <div className="flex gap-[6px] text-[26px] font-extrabold text-white">
+            <span>{timeLeft.days}</span>
+            <span className="opacity-60">:</span>
+            <span>{timeLeft.hours}</span>
+            <span className="opacity-60">:</span>
+            <span>{timeLeft.minutes}</span>
+            <span className="opacity-60">:</span>
+            <span>{timeLeft.seconds}</span>
+          </div>
+
+          <div className="flex gap-6 mt-1 text-[10px] tracking-[0.18em] text-cyan-100/70 uppercase">
+            <span>Days</span>
+            <span>Hrs</span>
+            <span>Min</span>
+            <span>Sec</span>
+          </div>
         </div>
       </div>
 
+      {/* Radar animation */}
       <style>{`
         @keyframes radarSpin {
-          0% { transform: rotate(0deg); opacity: 0.7; }
-          100% { transform: rotate(360deg); opacity: 0.7; }
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
         .animate-radarSpin {
-          animation: radarSpin 3.6s linear infinite;
+          animation: radarSpin 4s linear infinite;
         }
       `}</style>
     </div>

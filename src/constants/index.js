@@ -12,27 +12,31 @@ import {
 
   const notifications = ["🚀 Don’t just watch innovation—be part of it! Register today! 🚀", "⚡ Code, create, and conquer—your journey begins here. ⚡"]
   
-  export const navItems = [
-  { id: "home", title: "Home", isHome: true },
-  { id: "about", title: "About" },
-  { id: "events", title: "Events" },
-  { id: "schedule", title: "Schedule" },
-  { id: "prizes", title: "Prizes" },
-  { id: "register", title: "Register" },
-  { id: "admin", title: "Admin" }
+//   export const navItems = [
+//   { id: "about", isHome: true, title: "About" },
+//   { id: "events", isHome: true, title: "Events" },
+//   { id: "committee/core", isHome: false, title: "Committee", path: "/committee/core" },
+//   { id: "register", isHome: false, title: "Register" },
+// ];
+
+
+export const navItems = [
+  { id: "home", title: "Home", type: "hash" },
+  { id: "about", title: "About", type: "hash" },
+  { id: "events", title: "Events", type: "hash" },
+  { id: "committee", title: "Committee", type: "route", path: "/committee/core" },
+  { id: "register", title: "Register", type: "route", path: "/register" }
 ];
 
 
 
 
-
-
   const navLinks = [
-    {
-      id: "results/impetus",
-      isHome: false,
-      title: "Results",
-    },
+    // {
+    //   id: "results/impetus",
+    //   isHome: false,
+    //   title: "Results",
+    // },
     {
       id: "about",
       isHome: true,
@@ -169,10 +173,17 @@ import {
   }
 
   
+  // const events = [
+  //   { id: 1, _id: 'impetus', title: "Impetus", description: "International Level Project Exhibition and Competition.", logo: impetus, color:"bg-slate-700", team_size: '2-5 members', type: 'Project Expo', date: "Registration Closed" },
+  //   { id: 2, _id: 'pradnya', title: "Pradnya", description: "Compete with the best minds in the National Level Coding Contest.", logo:pradnya, color:"bg-slate-700", team_size: '1-2 members', type: 'Coding Competition', date: "Registration Closed" },
+  //   { id: 3, _id: 'concepts', title: "Concepts", description: "The most grand project exhibition event Concepts for final year student.", logo: concepts, color:"bg-slate-700", team_size: '2-5 members', type: 'Project Expo', date: "Registration Closed" },
+  //   { id: 4, _id: 'techfiesta', title: "TechFiesta", description: "International Hackathon", logo: techfiesta, color:"bg-slate-700", team_size: '4-5 members', type: 'Hackathon', date: "Registration Closed" },
+  //   { id: 5, _id: 'impetus', title: "Special Event", description: "An exciting surprise awaits! Stay tuned for something unforgettable.", logo: logo, color:"bg-slate-700", team_size: '1-5 members', type: 'Unveiling Soon', date: "To Be Announced" },
+  // ];
   const events = [
-    { id: 1, _id: 'impetus', title: "Impetus", description: "International Level Project Exhibition and Competition.", logo: impetus, color:"bg-slate-700", team_size: '2-5 members', type: 'Project Expo', date: "Registration Closed" },
-    { id: 2, _id: 'pradnya', title: "Pradnya", description: "Compete with the best minds in the National Level Coding Contest.", logo:pradnya, color:"bg-slate-700", team_size: '1-2 members', type: 'Coding Competition', date: "Registration Closed" },
-    { id: 3, _id: 'concepts', title: "Concepts", description: "The most grand project exhibition event Concepts for final year student.", logo: concepts, color:"bg-slate-700", team_size: '2-5 members', type: 'Project Expo', date: "Registration Closed" },
+    { id: 1, _id: 'impetus', title: "Impetus", description: "International Level Project Exhibition and Competition.", logo: impetus, color:"bg-slate-700", team_size: '2-5 members', type: 'Project Expo', date: "Registration Opening Soon!!" },
+    { id: 2, _id: 'pradnya', title: "Pradnya", description: "Compete with the best minds in the National Level Coding Contest.", logo:pradnya, color:"bg-slate-700", team_size: '1-2 members', type: 'Coding Competition', date: "Registration Opening Soon!!" },
+    { id: 3, _id: 'concepts', title: "Concepts", description: "The most grand project exhibition event Concepts for final year student.", logo: concepts, color:"bg-slate-700", team_size: '2-5 members', type: 'Project Expo', date: "Registration Opening Soon!!" },
     { id: 4, _id: 'techfiesta', title: "TechFiesta", description: "International Hackathon", logo: techfiesta, color:"bg-slate-700", team_size: '4-5 members', type: 'Hackathon', date: "Registration Closed" },
     { id: 5, _id: 'impetus', title: "Special Event", description: "An exciting surprise awaits! Stay tuned for something unforgettable.", logo: logo, color:"bg-slate-700", team_size: '1-5 members', type: 'Unveiling Soon', date: "To Be Announced" },
   ];

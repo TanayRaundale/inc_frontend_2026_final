@@ -425,3 +425,47 @@ input:-webkit-autofill {
   background-size: 200% 200%;
   animation: incShine 14s ease-in-out infinite;
 }
+
+
+
+/* Scanline animation */
+.scanline {
+  animation: scan-move 6s linear infinite;
+}
+@keyframes scan-move {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* Slow breathing neon glow */
+@keyframes pulse-slow {
+  0%,100% { opacity: 0.55; filter: drop-shadow(0 0 15px rgba(0,255,255,0.3)); }
+  50% { opacity: 0.95; filter: drop-shadow(0 0 25px rgba(0,255,255,0.6)); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Corner pulse */
+.neon-corner {
+  animation: cornerPulse 3s ease-in-out infinite;
+}
+@keyframes cornerPulse {
+  0%,100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+
+
+
+
+
+@keyframes arcFloat {
+  0%   { transform: translateY(0px) rotate(-90deg); }
+  50%  { transform: translateY(10px) rotate(-90deg); }
+  100% { transform: translateY(0px) rotate(-90deg); }
+}
+
+.animate-arcFloat {
+  animation: arcFloat 5s ease-in-out infinite;
+}
