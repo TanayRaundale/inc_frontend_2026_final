@@ -23,7 +23,7 @@ import { AnimatePresence } from "framer-motion";
 import Preloader from "./components/Preloader";
 
 // Lazy components
-const Register = lazy(() => import("./components/Register"));
+const Register = lazy(() => import("./components/Register.jsx"));
 const Committee = lazy(() => import("./components/committee"));
 const EventDetails = lazy(() => import("./components/EventDetails"));
 // const Results = lazy(() => import("./components/Results"));

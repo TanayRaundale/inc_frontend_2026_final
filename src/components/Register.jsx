@@ -14,7 +14,7 @@ const osteps = [
   { id: 2, label: "Add Members" },
   { id: 3, label: "College Details" },
   { id: 4, label: "Payment" },
-];
+];  
 
 const pSteps = [
   { id: 1, label: "Add Members" },
